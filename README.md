@@ -1,5 +1,24 @@
-# Photo-Bomb
+# front-end
 
-Welcome to Photo-Bomb - An app where you can share photos with one another and your best reactions. 
+## Project setup
+```
+npm install
+```
 
-Check-out the demo: [PhotoBomb](https://photos.ricardol.com/)
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
