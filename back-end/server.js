@@ -1,20 +1,20 @@
-const express = require("express");
+const express = require('express');
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const users = require("./users.js");
+const photos = require("./photos.js");
 
-// setup express
+// setupping express
 const app = express();
 
-// setup body parser middleware to conver to JSON and handle URL encoded forms
+// setupping body parser middleware to conver to JSON and handle URL encoded forms
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
-// connect to the mongodb database
-mongoose.connect("mongodb://localhost:27017/photobomb", {
+// connecting to the mongodb database
+mongoose.connect('mongodb://localhost:27017/photobomb', {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });
@@ -22,25 +22,19 @@ mongoose.connect("mongodb://localhost:27017/photobomb", {
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
-const cookieSession = require("cookie-session");
-app.use(
-  cookieSession({
-    name: "session",
-    keys: ["secretValue"],
-    cookie: {
-      maxAge: 24 * 60 * 60 * 1000 // 24 hours
-    }
-  })
-);
+const cookieSession = require('cookie-session');
+app.use(cookieSession({
+  name: 'session',
+  keys: [
+    'secretValue'
+  ],
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+}));
 
-// import the users module and setup its API path
-const users = require("./users.js");
+// importing the users module and setup its API path
 app.use("/api/users", users.routes);
-
-const photos = require("./photos.js");
 app.use("/api/photos", photos.routes);
 
-const comments = require("./comments.js");
-app.use("/api/comments", comments.routes);
-
-app.listen(3001, () => console.log("Server listening on port 3001!"));
+app.listen(3001, () => console.log('Server listening on port 3001!'));
