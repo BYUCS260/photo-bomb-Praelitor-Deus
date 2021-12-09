@@ -60,7 +60,7 @@ export default {
       usernameLogin: "",
       passwordLogin: "",
       error: "",
-      errorLogin: ""
+      errorLogin: "",
     };
   },
   methods: {
@@ -74,7 +74,7 @@ export default {
           firstName: this.firstName,
           lastName: this.lastName,
           username: this.username,
-          password: this.password
+          password: this.password,
         });
         this.$root.$data.user = response.data.user;
       } catch (error) {
@@ -89,15 +89,15 @@ export default {
       try {
         let response = await axios.post("/api/users/login", {
           username: this.usernameLogin,
-          password: this.passwordLogin
+          password: this.passwordLogin,
         });
         this.$root.$data.user = response.data.user;
       } catch (error) {
         this.errorLogin = "Error: " + error.response.data.message;
         this.$root.$data.user = null;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -134,6 +134,7 @@ input {
 }
 
 .error {
+  margin-top: 10px;
   display: inline;
   padding: 5px 20px;
   border-radius: 30px;

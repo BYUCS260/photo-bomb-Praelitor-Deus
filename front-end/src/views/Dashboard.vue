@@ -7,13 +7,13 @@
 
 <script>
 import MyPhotos from "@/components/MyPhotos.vue";
-import Login from "../components/Login";
+import Login from "@/components/Login.vue";
 import axios from "axios";
 export default {
   name: "dashboard",
   components: {
     MyPhotos,
-    Login
+    Login,
   },
   async created() {
     try {
@@ -26,8 +26,8 @@ export default {
   computed: {
     user() {
       return this.$root.$data.user;
-    }
-  }
+    },
+  },
 };
 </script>
 

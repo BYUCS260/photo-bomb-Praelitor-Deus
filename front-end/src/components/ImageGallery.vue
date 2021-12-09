@@ -1,10 +1,11 @@
 <template>
   <div>
     <section class="image-gallery">
-      <div class="image" v-for="photo in photos" v-bind:key="photo._id">
-        <router-link :to="{ name: 'photo', params: { id: photo._id } }"
-          ><img :src="photo.path"
-        /></router-link>
+      <div class="image zoom" v-for="photo in photos" v-bind:key="photo._id">
+        <!-- <img :src="photo.path" /> -->
+        <router-link :to="{ name: 'photo', params: { id: photo._id } }">
+          <img :src="photo.path" />
+        </router-link>
         <div class="photoInfo">
           <p class="photoTitle">{{ photo.title }}</p>
           <p class="photoName">
@@ -23,19 +24,33 @@ import moment from "moment";
 export default {
   name: "ImageGallery",
   props: {
-    photos: Array
+    photos: Array,
   },
   methods: {
     formatDate(date) {
       if (moment(date).diff(Date.now(), "days") < 15)
         return moment(date).fromNow();
       else return moment(date).format("d MMMM YYYY");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
+.zoom {
+  padding: 5px;
+  transition: transform 0.5s; /* Animation */
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(
+    1.01
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 .photoInfo {
   display: flex;
   justify-content: space-between;

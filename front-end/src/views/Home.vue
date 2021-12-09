@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <br /><br />
+    <br />
     <image-gallery :photos="photos" />
     <p v-if="error">{{ error }}</p>
   </div>
@@ -11,12 +13,12 @@ import ImageGallery from "@/components/ImageGallery.vue";
 export default {
   name: "Home",
   components: {
-    ImageGallery
+    ImageGallery,
   },
   data() {
     return {
       photos: [],
-      error: ""
+      error: "",
     };
   },
   created() {
@@ -30,7 +32,8 @@ export default {
       } catch (error) {
         this.error = error.response.data.message;
       }
-    }
-  }
+    },
+  },
 };
 </script>
+

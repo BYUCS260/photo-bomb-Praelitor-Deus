@@ -1,4 +1,5 @@
 <template>
+
   <transition v-if="show" name="modal">
     <div class="modal-mask">
       <div class="modal-container">
@@ -7,18 +8,18 @@
           <fieldset>
             <input v-model="title" placeholder="Title" />
           </fieldset>
+
           <fieldset>
             <textarea
               v-model="description"
               placeholder="Description"
             ></textarea>
           </fieldset>
+
           <fieldset>
             <div class="imageInput" @click="chooseImage">
               <img v-if="url" :src="url" />
-              <div v-if="!url" class="placeholder">
-                Choose an Image
-              </div>
+              <div v-if="!url" class="placeholder">Choose an Image</div>
               <input
                 class="fileInput"
                 ref="fileInput"
@@ -28,6 +29,7 @@
             </div>
             <p v-if="error" class="error">{{ error }}</p>
           </fieldset>
+
           <fieldset class="buttons">
             <button type="button" @click="close" class="pure-button">
               Close
@@ -36,6 +38,7 @@
               Upload
             </button>
           </fieldset>
+
         </form>
       </div>
     </div>
@@ -47,7 +50,7 @@ import axios from "axios";
 export default {
   name: "Uploader",
   props: {
-    show: Boolean
+    show: Boolean,
   },
   data() {
     return {
@@ -55,7 +58,7 @@ export default {
       description: "",
       url: "",
       file: null,
-      error: ""
+      error: "",
     };
   },
   methods: {
@@ -84,8 +87,8 @@ export default {
       } catch (error) {
         this.error = "Error: " + error.response.data.message;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -118,14 +121,6 @@ export default {
   transition: all 0.5s ease;
 }
 
-/*
-* The following styles are auto-applied to elements with
-* transition="modal" when their visibility is toggled
-* by Vue.js.
-*
-* You can easily play with the modal transition by editing
-* these styles.
-*/
 .modal-enter {
   opacity: 0;
 }
@@ -139,8 +134,6 @@ export default {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
-
-/* Form */
 
 form {
   font-size: 11pt;
@@ -183,4 +176,5 @@ img {
   display: flex;
   justify-content: space-between;
 }
+
 </style>

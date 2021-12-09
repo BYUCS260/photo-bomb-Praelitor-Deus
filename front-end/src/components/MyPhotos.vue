@@ -19,18 +19,17 @@
 import axios from "axios";
 import Uploader from "@/components/Uploader.vue";
 import ImageGallery from "@/components/ImageGallery.vue";
-
 export default {
   name: "MyPhotos",
   components: {
     Uploader,
-    ImageGallery
+    ImageGallery,
   },
   data() {
     return {
       show: false,
       photos: [],
-      error: ""
+      error: "",
     };
   },
   created() {
@@ -39,7 +38,7 @@ export default {
   computed: {
     user() {
       return this.$root.$data.user;
-    }
+    },
   },
   methods: {
     async logout() {
@@ -67,8 +66,8 @@ export default {
     async uploadFinished() {
       this.show = false;
       this.getPhotos();
-    }
-  }
+    },
+  },
 };
 </script>
 
